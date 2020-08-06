@@ -1,0 +1,9 @@
+<div class="testApp-Main__row"
+    [ngClass]="{'testApp-Main__marked': isMarked}">
+    <div class="testApp-Main__column">
+        <input type="checkbox" class="testApp-Main__column" (click)="Mark()">
+    </div>
+    <div class="testApp-Main__column">{{ product.group_name }}</div>
+    <div class="testApp-Main__column">{{ product.name }}</div>
+    <div class="testApp-Main__column">{{ product.price }}</div>
+</div>

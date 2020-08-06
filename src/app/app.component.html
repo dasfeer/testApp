@@ -1,0 +1,50 @@
+<div class="testApp-Main__wrapper">
+  <div class="testApp-Main__cartInfo">
+    <div class="testApp-Main__cartTitle">Корзина</div>
+    <div class="testApp-Main__cartSumm">
+      Сумма: <span>{{ summ }}</span>
+    </div>
+    <div class="testApp-Main__cartAmount">
+      Количество товаров: <span>{{ amount }}</span>
+    </div>
+  </div>
+  <div class="testApp-Main__row testApp-Main__buttons">
+    <div class="testApp-Main__column">
+      <button class="testApp-Main__inCart" (click)="moveToCart()">В Корзину</button>
+    </div>
+    <div class="testApp-Main__column">
+      <select class="testApp-Main__sortCategory" [(ngModel)]="filterCategory">
+        <option value="default">Все</option>
+        <option *ngFor="let group of groups" value="{{ group.id }}">{{ group.name }}</option>
+      </select>
+    </div>
+    <div class="testApp-Main__column">
+      <div class="testApp-Main__sortTitle">Сортировка</div>
+      <select class="testApp-Main__sortAlphabetically" [(ngModel)]="sortByABC">
+        <option value="default">По умолчанию</option>
+        <option value="ASC">от А до Я</option>
+        <option value="DECS">от Я до А</option>
+      </select>
+    </div>
+    <div class="testApp-Main__column">
+      <div class="testApp-Main__sortTitle">Сортировка</div>
+      <select class="testApp-Main__sortPrice" [(ngModel)]="sortByPrice">
+        <option value="default">По умолчанию</option>
+        <option value="ASC">По возрастанию</option>
+        <option value="DESC">По убыванию</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="products.length > 0" class="testApp-Main__row testApp-Main__rowHeader">
+    <div class="testApp-Main__column"></div>
+    <div class="testApp-Main__column">Категория</div>
+    <div class="testApp-Main__column">Наименование товара</div>
+    <div class="testApp-Main__column">Цена</div>
+  </div>
+  <app-product-item *ngFor="let p of products | filter : [filterCategory, sortByABC, sortByPrice]"
+    [product]="p">
+  </app-product-item>
+  <div *ngIf="products.length === 0" class="testApp-Main__emptyTemplate">
+    <span>Товаров нет</span>
+  </div>
+</div>
